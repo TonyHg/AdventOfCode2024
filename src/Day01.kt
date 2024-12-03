@@ -1,10 +1,19 @@
 import kotlin.math.abs
 
 fun main() {
-    fun sumOfSmallestDistance(list1: MutableList<Int>, list2: MutableList<Int>): Int {
-        list1.sort()
-        list2.sort()
-        return list1.zip(list2).fold(0) { acc, (n1, n2) -> acc + abs(n1 - n2) }
+    fun sumOfSmallestDistance(list1: List<Int>, list2: List<Int>): Int {
+        val sortedList1 = list1.sorted()
+        val sortedList2 = list2.sorted()
+        return sortedList1.zip(sortedList2).fold(0) { acc, (n1, n2) -> acc + abs(n1 - n2) }
+    }
+
+    fun similarityScore(list1: List<Int>, list2: List<Int>): Int {
+        val histogram = mutableMapOf<Int, Int>()
+        list2.forEach { n2 ->
+            histogram[n2] = histogram.getOrDefault(n2, 0) + 1
+        }
+
+        return list1.sumOf { n1 -> n1 * (histogram[n1] ?: 0) }
     }
 
     val input = readInput("Day01")
@@ -17,5 +26,6 @@ fun main() {
         list2.add(n2)
     }
 
-    sumOfSmallestDistance(list1, list2).println()
+    println("sumOfSmallestDistance ${sumOfSmallestDistance(list1, list2)}")
+    println("similarityScore ${similarityScore(list1, list2)}")
 }
