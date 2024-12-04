@@ -1,5 +1,3 @@
-import kotlin.math.abs
-
 fun main() {
     fun regexMul(line: String): Int {
         val regex = Regex("mul\\((\\d{1,3}),(\\d{1,3})\\)")
@@ -14,6 +12,6 @@ fun main() {
     val input = readInput("Day03")
     val result = input.sumOf { regexMul(it) }
     println("regexMul $result")
-    val result2 = input.sumOf { regexMul(removeBetweenDontAndDo(it)) }
+    val result2 = regexMul(removeBetweenDontAndDo(input.joinToString("")))
     println("removeBetweenDontAndDo $result2")
 }
