@@ -1,9 +1,10 @@
 fun main() {
-    fun canBeSolved(result: Long, numbers: List<Long>, current: Long): Boolean {
+    fun canBeSolved(result: Long, numbers: List<Long>, current: Long ): Boolean {
         if (result == current) return true
         if (numbers.isEmpty()) return false
         return canBeSolved(result, numbers.drop(1), current + numbers.first()) ||
-                canBeSolved(result, numbers.drop(1), current * numbers.first())
+                canBeSolved(result, numbers.drop(1), current * numbers.first()) ||
+                canBeSolved(result, numbers.drop(1), (current.toString() + numbers.first()).toLong())
     }
 
     fun retrieveOperators(input: List<Pair<Long, List<Long>>>): Long {
