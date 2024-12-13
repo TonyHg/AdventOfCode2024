@@ -2,7 +2,7 @@ fun main() {
     fun trailToTop(input: MutableList<String>, i: Int, j: Int, curr: Char): Int {
         if (curr == '.') return 0
         if (curr == '9') {
-            input[i] = input[i].replaceRange(j, j + 1, ".")
+//            input[i] = input[i].replaceRange(j, j + 1, ".") // for part 1
             return 1
         }
 
